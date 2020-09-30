@@ -9,6 +9,9 @@ const userRoutes = require('./api/routes/user');
 const feedbackRoutes = require('./api/routes/feedback');
  var app = express(); 
 
+ //import identifiants MongoDB
+ const connect = require('./api/connect/connect')
+
 
 /* async function start() { */
   const isDev = process.env.NODE_ENV !== 'production'
@@ -17,7 +20,7 @@ const feedbackRoutes = require('./api/routes/feedback');
 /* const nuxt = await loadNuxt(isDev ? 'dev' : 'start') */
 //connect db 
 
-mongoose.connect('mongodb+srv://USER:PWD@cluster0.KEY.mongodb.net/tomatoes?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://'+connect.userId+':'+connect.password+'@'+connect.cluster+'.'+connect.key+'.mongodb.net/tomatoes?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology:true
 });
